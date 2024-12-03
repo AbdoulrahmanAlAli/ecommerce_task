@@ -51,33 +51,31 @@ const ProductItem = ({ product }: ProductCardProps) => {
   }, []);
 
   return (
-    <div className="w-[100%] p-4">
-      <div className="block max-w-full p-6 bg-white border border-gray-200 rounded-lg shadow hover:bg-gray-100 dark:bg-gray-800 dark:border-gray-700 dark:hover:bg-gray-700 transition-all">
-        <h5 className="mb-2 text-xl font-semibold text-gray-900 dark:text-white line-clamp-2">
-          {product.title}
-        </h5>
-        <p className="font-normal text-gray-700 dark:text-gray-400 line-clamp-3">
-          {product.description}
-        </p>
-        <p className="text-red-500 font-semibold mt-2">
-          Price: ${product.price}
-        </p>
-
-        <button
-          type="button"
-          onClick={handleAddToCart}
-          className={`mt-4 focus:outline-none text-white ${
-            cart
-              ? "bg-red-700 hover:bg-red-800 dark:bg-red-600 dark:hover:bg-red-700"
-              : "bg-green-700 hover:bg-green-800 dark:bg-green-600 dark:hover:bg-green-700"
-          } focus:ring-4 focus:ring-${
-            cart ? "red" : "green"
-          }-300 font-medium rounded-lg text-sm px-5 py-2.5 transition-all duration-200 ease-in-out dark:focus:ring-${
-            cart ? "red" : "green"
-          }-900`}>
-          {cart ? "Remove From Cart" : "Add To Cart"}
-        </button>
+    <div key={product.id} className=" bg-slate-700 p-6 rounded-lg shadow-lg">
+      <img
+        src="https://via.placeholder.com/200"
+        alt="Product 2"
+        className="w-full h-48 object-cover rounded-lg mb-4"
+      />
+      <h3 className="text-xl text-white font-semibold mb-2">{product.title}</h3>
+      <p className="text-white mb-4">${product.price}</p>
+      <div className="text-white hover:underline">
+        {product.description}
       </div>
+      <button
+        type="button"
+        onClick={handleAddToCart}
+        className={`mt-4 focus:outline-none text-white ${
+          cart
+            ? "bg-red-700 hover:bg-red-800 dark:bg-red-600 dark:hover:bg-red-700"
+            : "bg-green-700 hover:bg-green-800 dark:bg-green-600 dark:hover:bg-green-700"
+        } focus:ring-4 focus:ring-${
+          cart ? "red" : "green"
+        }-300 font-medium rounded-lg text-sm px-5 py-2.5 transition-all duration-200 ease-in-out dark:focus:ring-${
+          cart ? "red" : "green"
+        }-900`}>
+        {cart ? "Remove From Cart" : "Add To Cart"}
+      </button>
     </div>
   );
 };
