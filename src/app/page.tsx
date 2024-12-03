@@ -16,7 +16,7 @@ const HomePage = () => {
         setProducts(response.data);
         setLoading(false);
       } catch (error) {
-        console.error("Error fetching products:", error);
+        console.log("Error fetching products:", error);
         setLoading(false);
       }
     };
