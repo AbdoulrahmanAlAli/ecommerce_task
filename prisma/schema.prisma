@@ -1,0 +1,45 @@
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "postgresql"
+  url      = env("DATABASE_URL")
+}
+
+model User {
+    id       Int       @id @default(autoincrement())
+    email    String    @unique
+    username String    @db.VarChar(100)
+    password String
+    isAdmin  Boolean   @default(false)
+    createAt DateTime  @default(now())
+    updateAt DateTime  @updatedAt
+    products Product[] @relation("UserProducts")
+    orders   Order[]   @relation("UserOrders") // Add this field for the reverse relation
+}
+
+model Product {
+    id          Int       @id @default(autoincrement())
+    title       String    @db.VarChar(200)
+    description String
+    price       Int
+    createAt    DateTime  @default(now())
+    updateAt    DateTime  @updatedAt
+    users       User[]    @relation("UserProducts")
+    orders      Order[]   @relation("OrderProducts")
+}
+
+model Order {
+    id          Int       @id @default(autoincrement())
+    userId      Int
+    status      String    // e.g., 'Pending', 'Completed', etc.
+    totalPrice  Int
+    createdAt   DateTime  @default(now())
+    updatedAt   DateTime  @updatedAt
+    user        User      @relation("UserOrders", fields: [userId], references: [id]) // Add reverse relation to User
+    products    Product[] @relation("OrderProducts")
+}
+
+
+
