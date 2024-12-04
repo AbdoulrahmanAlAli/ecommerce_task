@@ -7,7 +7,7 @@ First, run the development server:
 delete the file ('migrations') in prisma`s file =>
 after that run this "npx prisma migrate dev" =>
 after that you can run the server using "npm run dev" => 
-if you want the data use thus "npx prisma studio" 
+if you want the data use this "npx prisma studio" 
 
 ```bash
 npm run dev
